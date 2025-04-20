@@ -21,9 +21,18 @@ class Tarea extends Model
         'fecha_limite' => 'date',
     ];
 
-
-    public function user()
+    /**
+     * Tareas que pertenecen al usuario.
+     *
+     * @return void
+     */
+    public function owner()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id', 'users');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'tarea_user', 'tarea_id', 'user_id');
     }
 }

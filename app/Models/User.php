@@ -58,8 +58,23 @@ class User extends Authenticatable
             ->implode('');
     }
 
-    public function tareas()
+    /**
+     * Obtiene las tareas que ha creado el usuario.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function misTareas()
     {
         return $this->hasMany(Tarea::class);
+    }
+
+    /**
+     * Obtiene las tareas relacionadas con el usuario.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tareas()
+    {
+        return $this->belongsToMany(Tarea::class);
     }
 }
